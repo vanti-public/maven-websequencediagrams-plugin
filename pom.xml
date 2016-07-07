@@ -1,13 +1,34 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>co.vanti</groupId>
+        <artifactId>parent-java</artifactId>
+        <version>7</version>
+    </parent>
     <groupId>com.websequencediagrams</groupId>
-    <artifactId>websequencediagrams-plugin</artifactId>
+    <artifactId>websequencediagrams-maven-plugin</artifactId>
     <version>1.0.0</version>
     <packaging>maven-plugin</packaging>
 
     <name>maven-websequencediagrams-plugin Maven Mojo</name>
     <description>Generates wed sequence diagram .png files</description>
     <url>http://www.websequencediagrams.com/</url>
+
+    <repositories>
+        <repository>
+            <id>vanti.releases</id>
+            <name>vanti.releases</name>
+            <url>https://nexus.vanti.co.uk:8443/content/repositories/releases</url>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>vanti.thirdparty</id>
+            <name>Vanti Third-party</name>
+            <url>${vanti.nexus}/thirdparty</url>
+        </repository>
+    </distributionManagement>
 
     <developers>
         <developer>
@@ -78,6 +99,10 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <!-- see http://jira.codehaus.org/browse/MNG-5346 -->
+                    <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
+                </configuration>
             </plugin>
         </plugins>
     </build>
